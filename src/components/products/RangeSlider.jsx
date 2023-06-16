@@ -10,7 +10,7 @@ const PriceSlider = () => {
     setValues(newValues)
 };
  const  handleSearch =() =>{
-  console.log('drag stop')
+ // console.log('drag stop')
    setTimeout(function(){
         navigate('/products?price_min='+values[0]+'&price_max='+values[1]);
     },300);

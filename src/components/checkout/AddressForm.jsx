@@ -9,7 +9,7 @@ import notification from 'utilities/notification';
 import { toJson } from 'utilities/str';
 
 const AddressForm = ({ editId, data, handleClose }) => {
-    console.log(data)
+    // console.log(data)
     const data_address = toJson(data?.address)
     const [initialValues, setInitialValues] = useState({
         title: data?.title || '',

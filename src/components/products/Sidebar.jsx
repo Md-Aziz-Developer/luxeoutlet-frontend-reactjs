@@ -57,7 +57,7 @@ const Sidebar = ({ shop_id, category }) => {
 
         <Link to={`/products`}>
           {" "}
-          <button class=" btn btn-dark mb-5" Linkto="">
+          <button className=" btn btn-dark mb-5" >
             Clear Filter
           </button>
         </Link>

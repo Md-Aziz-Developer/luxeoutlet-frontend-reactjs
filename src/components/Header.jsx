@@ -32,7 +32,7 @@ function Header() {
 
 	const onSubmit = (e) => {
 		e.preventDefault()
-		console.log(typeof search);
+		// console.log(typeof search);
 		if (search) {
 			handleNavigate('', 'search', search)
 		}

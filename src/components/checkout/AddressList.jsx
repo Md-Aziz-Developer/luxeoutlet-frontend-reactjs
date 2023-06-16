@@ -46,7 +46,7 @@ const AddressList = ({ idState}) => {
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
                                         <a href='#' type='button' onClick={()=>selectAddress(idx)} style={{textDecoration:"none",color:"#000"}} >
                                         <div className="card-address mt-4 mb-5">
-                                        <input name="plan" class="radio" id ={`selectAddress`+idx} type="radio"  value={address.id} ></input>
+                                        <input name="plan" className="radio" id ={`selectAddress`+idx} type="radio"  value={address.id} ></input>
                                             <div className="card-address-edit">
                                                 <h5>{address?.title}</h5>
                                                 <button className='btn' onClick={() => handleEdit(address?.id)}>
