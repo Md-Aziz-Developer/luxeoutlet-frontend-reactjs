@@ -358,7 +358,7 @@ h6 {
   height: 250px;
   width: 90%;
   overflow: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: thin;
 }
 

@@ -119,7 +119,8 @@ function Footer({category}) {
 											SHOP BY
 										</div>
 									</li>
-									{Object.keys(category).slice(0,6).map((name, idx) => (
+									<div className='scroll-div'>
+									{Object.keys(category).map((name, idx) => (
 										<li
 										className=" cat-filt category"
 										style={{ cursor: "pointer" }}
@@ -130,6 +131,7 @@ function Footer({category}) {
 										</a>
 										</li>
 									))}
+									</div>
 									{/* <Link to="#"><li>Fragrance For Him</li></Link>
 									<Link to="#"><li>Fragrance For Her</li></Link>
 									<Link to="#"><li>Makeup</li></Link>

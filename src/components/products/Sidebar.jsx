@@ -6,6 +6,7 @@ import { API_ENDPOINTS, useQuery } from "utilities";
 import { Link } from "react-router-dom";
 import BrandQuery from "./BrandQuery";
 import SizeQuery from "./SizeQuery";
+import PriceSlider from "./RangeSlider";
 
 const Sidebar = ({ shop_id, category }) => {
   const { data: categories } = useQuery(API_ENDPOINTS.CATEGORIES);
@@ -121,23 +122,7 @@ const Sidebar = ({ shop_id, category }) => {
               &nbsp;<u className="cathead">Price</u>
             </a>
           </li>
-          <div className="scroll-div">
-            <ul className="list-group">
-              {priceList.map((price, idx) => (
-                <li className="list-group-item" key={idx}>
-                  <input
-                    id={`price_${idx}`}
-                    className="form-check-input me-1"
-                    type="radio"
-                    name="price"
-                    value={price.value}
-                    onClick={(e) => handleNavigate(e, "price", price.value)}
-                  />
-                  <label htmlFor={`price_${idx}`}>₹{price.label}</label>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <PriceSlider/>
         </ul>
       </div>
 
