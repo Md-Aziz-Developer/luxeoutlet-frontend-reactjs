@@ -74,7 +74,7 @@ const Sidebar = ({ shop_id, category }) => {
           { Object.keys(category).map((name, idx) => (
             <li
               className="mt-3 ps-3 cat-filt"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer" ,fontSize:13 , fontWeight:500}}
               key={idx}
             >
               <a onClick={(e) => handleNavigate(e, "category", category[name])}>
@@ -106,7 +106,7 @@ const Sidebar = ({ shop_id, category }) => {
                     onChange={(e) => handleNavigate(e, "brand", e.target.value)}
                     id={`brand_${idx}`}
                   />
-                  <label htmlFor={`brand_${idx}`}>{brand?.name}</label>
+                  <label htmlFor={`brand_${idx}`} style={{fontSize:12 , fontWeight:500}}>{brand?.name}</label>
                 </li>
               ))}
             </ul>

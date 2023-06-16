@@ -4,7 +4,7 @@ import '../../style.css';
 import { useNavigate } from 'react-router-dom';
 
 const PriceSlider = () => {
-  const [values, setValues] = useState([1, 20000]);
+  const [values, setValues] = useState([1, 30000]);
   const navigate=useNavigate();
   const handleUpdate = newValues => {
     setValues(newValues)
@@ -23,9 +23,9 @@ const PriceSlider = () => {
         className="slider"
         value={values}
         onChange={handleUpdate}
-        step={10}
+        step={50}
         min={1}
-        max={20000}
+        max={30000}
         onAfterChange={handleSearch}
         onChangeComplete={handleSearch}
       />
@@ -40,7 +40,7 @@ const PriceSlider = () => {
           />
         </div>
         <div>
-        <label className='mt-3'>{'₹ ' +values[1]}</label>
+        <label className='mt-3'>{'₹ ' +values[1]+ '+'}</label>
           <input
             type="hidden"
             id="maxPrice"

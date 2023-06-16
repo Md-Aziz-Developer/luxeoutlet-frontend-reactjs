@@ -124,7 +124,7 @@ const Products = () => {
                               data-bs-target="#nav-prestige "
                             />
                           </div>
-                          <div className="box2 ">
+                          <div className="box2 text-center">
                             <p>
                               ITEMS PER PAGE: {currentTableData.length || 0}
                             </p>
