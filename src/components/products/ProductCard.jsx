@@ -59,7 +59,7 @@ const ProductCard = ({ product }) => {
           <br></br>
 
           <h6 className="card-title mb-2" style={{ fontSize: "14px" }}>
-            <Link className="p-1" to={`/products/${product?.id}`}>{product?.name.substring(0, 50)+'...'}</Link>
+            <Link className="p-1" to={`/products/${product?.id}`}>{product?.name.substring(0, 25)+'...'}</Link>
           </h6>
 
           {/* <p  className='line-clamp'>
