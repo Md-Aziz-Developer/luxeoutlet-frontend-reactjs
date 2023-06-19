@@ -110,7 +110,7 @@ const OrderForm = () => {
                 <div className="payment-optoin-section">
                     <div className="row pt-5 pb-5">
                         <div className="col-lg-8">
-                            <h2 className='payment'>Payment Option</h2>
+                            <h2 className='payment'>Payment Options</h2>
                             <div className="choose-payment-mode mt-5 pe-5">
                                 <ul>
                                     <div className="radio-btn-section pe-3">
