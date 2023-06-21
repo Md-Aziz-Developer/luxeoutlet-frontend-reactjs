@@ -93,8 +93,8 @@ const Sidebar = ({ shop_id, category }) => {
               &nbsp;<u className="cathead">Brands</u>
             </a>
           </li>
-
-          <div className="scroll-div">
+            {brands.length !=0 ?
+            <div className="scroll-div">
             <ul className="list-group">
               {brands.map((brand, idx) => (
                 <li className="list-group-item" key={idx}>
@@ -111,6 +111,9 @@ const Sidebar = ({ shop_id, category }) => {
               ))}
             </ul>
           </div>
+          : ''
+          }
+          
         </ul>
       </div>
 

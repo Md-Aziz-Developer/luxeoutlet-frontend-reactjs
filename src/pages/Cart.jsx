@@ -85,9 +85,10 @@ const Cart = () => {
 								</div>
 							</div>
 							<div className="col-lg-4 pt-1">
-								{!discount && (
+								{(!discount && items.length!=0 ) ?
 									<CouponForm />
-								)}
+									: ''
+								}
 								<div className="total-section">
 									<h1 style={{ fontSize: "26px" }} className="mb-5"> <u> Total</u></h1>
 									<div className="total-products">
@@ -126,7 +127,11 @@ const Cart = () => {
 										</div>
 										<p>including ({(subTotal * 18) / 100}) in taxes</p>
 									</div>
+									{items.length > 0 ?
 									<Link to="/checkout" className="payment-btn mt-5" > Proceed to Payment</Link>
+									: ''
+								}
+									
 								</div>
 							</div>
 						</div>
