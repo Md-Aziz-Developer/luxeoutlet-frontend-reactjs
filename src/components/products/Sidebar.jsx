@@ -36,7 +36,12 @@ const Sidebar = ({ shop_id, category }) => {
     const query = new URLSearchParams(Obj).toString();
     navigate(`/products?${query}`);
   };
+ const clearFilter= ()=> {
 
+var base=window.location.origin.toString();
+window.location.href=base+'/products';
+
+    }
   const priceList = [
     { label: "0-499", value: [0, 499] },
     { label: "500-999", value: [500, 999] },
@@ -55,12 +60,10 @@ const Sidebar = ({ shop_id, category }) => {
           <img src={cancelImg} alt="" />
         </span>
 
-        <Link to={`/products`}>
-          {" "}
-          <button className=" btn btn-dark mb-5" >
+          <button onClick={clearFilter} className=" btn btn-dark mb-5" >
             Clear Filter
           </button>
-        </Link>
+       
 
         <ul className="nav flex-column">
           <li>
