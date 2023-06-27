@@ -355,7 +355,7 @@ h6 {
 }
 
 .scroll-div {
-  height: 250px;
+  max-height: 250px;
   width: 90%;
   overflow: hidden;
   overflow-y: auto;
