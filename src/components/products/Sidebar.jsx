@@ -37,9 +37,16 @@ const Sidebar = ({ shop_id, category }) => {
     navigate(`/products?${query}`);
   };
 
-  const resetFiler= () =>{
-    navigate(`/products`);
-  }
+  const priceList = [
+    { label: "0-499", value: [0, 499] },
+    { label: "500-999", value: [500, 999] },
+    { label: "1000-2000", value: [1000, 2000] },
+    { label: "2000-3999", value: [2000, 3999] },
+    { label: "4000-10000", value: [4000, 10000] },
+    { label: "10000-15000", value: [10000, 15000] },
+    { label: "15000-20000", value: [15000, 20000] },
+    { label: "20000 &", value: [20000, 0] },
+  ];
 
   return (
     <div className="scroll-div-side pb-5">
@@ -48,7 +55,7 @@ const Sidebar = ({ shop_id, category }) => {
           <img src={cancelImg} alt="" />
         </span>
 
-        <Link onClick={resetFiler}>
+        <Link to={`/products`}>
           {" "}
           <button className=" btn btn-dark mb-5" >
             Clear Filter
