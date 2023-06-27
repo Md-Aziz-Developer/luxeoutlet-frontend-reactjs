@@ -19,7 +19,7 @@ const OrderForm = () => {
     const address = toJson(defaultAddress?.address)
     const isDisabled = isUserLoggedIn && totalQuantity > 0
     const [payMethod, setPayMethod] = useState('razorPay');
-
+    console.log(address);
     const initialValues = {
         "products": items.map(item => ({
             "order_quantity": item?.quantity,
