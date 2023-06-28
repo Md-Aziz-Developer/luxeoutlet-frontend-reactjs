@@ -6,7 +6,9 @@ import AddressQuery from './AddressQuery';
 const AddAddress = ({ modelState }) => {
     const { data, isLoading } = AddressQuery()
     const [showAddressModal, setShowAddressModal] = modelState
-    const handleClose = () => setShowAddressModal(false);
+    const handleClose = () => {setShowAddressModal(false)
+    window.location.reload();
+    };
 
     return (
         <Fragment>

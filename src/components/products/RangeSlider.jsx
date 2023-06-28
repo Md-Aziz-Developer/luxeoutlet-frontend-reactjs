@@ -31,7 +31,7 @@ const PriceSlider = () => {
       />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
-          <label className='mt-3'>{'₹ ' +values[0]}</label>
+          <label className='mt-3' style={{fontSize:12 , fontWeight:500}}>{'₹ ' +values[0]}</label>
           <input
             type="hidden"
             id="minPrice"
@@ -40,7 +40,7 @@ const PriceSlider = () => {
           />
         </div>
         <div>
-        <label className='mt-3'>{'₹ ' +values[1]+ '+'}</label>
+        <label className='mt-3' style={{fontSize:12 , fontWeight:500}}>{'₹ ' +values[1]+ '+'}</label>
           <input
             type="hidden"
             id="maxPrice"

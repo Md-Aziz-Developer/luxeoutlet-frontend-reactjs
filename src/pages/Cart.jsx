@@ -32,7 +32,14 @@ const Cart = () => {
 	const handleRemove = (id) => {
 		dispatch(remove(id))
 	}
-
+	const getTotalAmount=(subTotal,discount)=>{
+        var balance=subTotal-discount;
+        if(balance<=0){
+            return 0;
+        }else{
+            return balance;
+        }
+    }
 	return (
 		<Fragment>
 			<Header />
@@ -121,11 +128,11 @@ const Cart = () => {
 											<div className="new2"></div>
 										</div>
 										<div className="product-price">
-											<h5 style={{ fontSize: "24px" }}>Sub Total</h5><span style={{ fontSize: "24px" }}>₹{Number(subTotal - discount) || 0}</span><br></br>
+											<h5 style={{ fontSize: "24px" }}>Sub Total</h5><span style={{ fontSize: "24px" }}>₹{Number(getTotalAmount(subTotal, discount)) || 0}</span><br></br>
 
 
 										</div>
-										<p>including ({(subTotal * 18) / 100}) in taxes</p>
+										{/* <p>including ({(subTotal * 18) / 100}) in taxes</p> */}
 									</div>
 									{items.length > 0 ?
 									<Link to="/checkout" className="payment-btn mt-5" > Proceed to Payment</Link>

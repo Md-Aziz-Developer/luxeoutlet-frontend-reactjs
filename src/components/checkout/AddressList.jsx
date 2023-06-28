@@ -23,9 +23,12 @@ const AddressList = ({ idState}) => {
         setId(id)
         setShow(true)
     }
-    const selectAddress = (id)=>{
-
-        $('#selectAddress'+id).trigger('click')
+    const selectAddress = (id,addressId)=>{
+        
+        $('#selectAddress'+id).trigger('click');
+        localStorage.setItem('address',JSON.stringify(addressId));
+       // const storedAddress=JSON.parse(localStorage.getItem('address'));
+      //  console.log('selected address is ',storedAddress);
     }
 
     return (
@@ -44,7 +47,7 @@ const AddressList = ({ idState}) => {
                                 <Fragment key={idx}>
                                     
                                     <div className='col-lg-4 col-md-6 col-sm-6'>
-                                        <a href='#' type='button' onClick={()=>selectAddress(idx)} style={{textDecoration:"none",color:"#000"}} >
+                                        <a href='#' type='button' onClick={()=>selectAddress(idx,address?.id)} style={{textDecoration:"none",color:"#000"}} >
                                         <div className="card-address mt-4 mb-5">
                                         <input name="plan" className="radio" id ={`selectAddress`+idx} type="radio"  value={address.id} ></input>
                                             <div className="card-address-edit">
