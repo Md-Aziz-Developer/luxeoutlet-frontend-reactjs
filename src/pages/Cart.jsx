@@ -6,7 +6,7 @@ import Footer from 'components/Footer';
 import Header from 'components/Header';
 import { ProductCard, ProductQuery } from 'components/products';
 import { useCart } from 'hooks';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect,useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
 import { remove, removeDiscount } from 'store/cart/actions';
@@ -16,6 +16,8 @@ const Cart = () => {
 	const { items, subTotal, discount, coupon, totalQuantity } = useCart()
 	const { data: products } = ProductQuery()
 	const { data } = ProductQuery();
+	const [saleTax,setSaletax]=useState(0);
+    const [grandTotal,setGrandTotal]=useState(0);
   	const category_arr= {}
 	  {data.map((product, idx) => (
 		category_arr[product?.category?.name] = product?.category?.id
@@ -26,20 +28,31 @@ const Cart = () => {
 		if (totalQuantity === 0) {
 			dispatch(removeDiscount())
 		}
+		if(subTotal>discount){
+			var mytotal=(subTotal-discount);
+			if(mytotal<850){
+				setSaletax(75);
+				var Gran=mytotal+75;
+				if(Gran<=0){
+					setGrandTotal(0)
+				}else{
+					setGrandTotal(Gran);
+				}
+			}else{
+				setSaletax(0);
+				setGrandTotal(mytotal);
+			}
+		}else{
+			setSaletax(75);
+				setGrandTotal(75);
+		}
 	}, [totalQuantity])
 
 
 	const handleRemove = (id) => {
 		dispatch(remove(id))
 	}
-	const getTotalAmount=(subTotal,discount)=>{
-        var balance=subTotal-discount;
-        if(balance<=0){
-            return 0;
-        }else{
-            return balance;
-        }
-    }
+
 	return (
 		<Fragment>
 			<Header />
@@ -128,11 +141,11 @@ const Cart = () => {
 											<div className="new2"></div>
 										</div>
 										<div className="product-price">
-											<h5 style={{ fontSize: "24px" }}>Sub Total</h5><span style={{ fontSize: "24px" }}>₹{Number(getTotalAmount(subTotal, discount)) || 0}</span><br></br>
+											<h5 style={{ fontSize: "24px" }}>Sub Total</h5><span style={{ fontSize: "24px" }}>₹{Number(grandTotal) || 0}</span><br></br>
 
 
 										</div>
-										{/* <p>including ({(subTotal * 18) / 100}) in taxes</p> */}
+										<p>Shipping Charges  ₹ {saleTax}</p>
 									</div>
 									{items.length > 0 ?
 									<Link to="/checkout" className="payment-btn mt-5" > Proceed to Payment</Link>

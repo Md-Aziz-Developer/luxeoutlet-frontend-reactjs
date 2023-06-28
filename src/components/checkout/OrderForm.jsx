@@ -1,6 +1,6 @@
 import { FormikProvider, useFormik } from 'formik';
 import { useCart, useShop, useUser } from 'hooks';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { clear } from 'store/cart/actions';
@@ -19,6 +19,30 @@ const OrderForm = () => {
     const address = toJson(defaultAddress?.address)
     const isDisabled = isUserLoggedIn && totalQuantity > 0
     const [payMethod, setPayMethod] = useState('razorPay');
+    const [saleTax,setSaletax]=useState(0);
+    const [grandTotal,setGrandTotal]=useState(0);
+    useEffect(()=>{
+        if(total>discount){
+			var mytotal=(subTotal-discount);
+			if(mytotal<850){
+				setSaletax(75);
+				var Gran=mytotal+75;
+				if(Gran<=0){
+					setGrandTotal(0)
+				}else{
+					setGrandTotal(Gran);
+				}
+			}else{
+				setSaletax(0);
+				setGrandTotal(mytotal);
+			}
+		}else{
+			setSaletax(75);
+				setGrandTotal(75);
+		}
+        
+    });
+    
    // console.log('Userdata',user);
     const getTotalAmount=(subTotal,discount)=>{
         var balance=subTotal-discount;
@@ -28,6 +52,7 @@ const OrderForm = () => {
             return balance;
         }
     }
+    
     const initialValues = {
         "products": items.map(item => ({
             "order_quantity": item?.quantity,
@@ -36,12 +61,12 @@ const OrderForm = () => {
             "subtotal": item?.price * item?.quantity
         })),
         "status": 1,
-        "amount": getTotalAmount(total, discount),
-        "sales_tax": 0,
+        "amount": total,
+        "sales_tax": saleTax,
         "coupon_id": coupon?.id,
         "shop_id": shop?.id,
-        "paid_total": getTotalAmount(total, discount),
-        "total": getTotalAmount(total, discount),
+        "paid_total": grandTotal,
+        "total": total,
         "customer_contact": user?.contact || '0123456789',
         "customer_id":user?.id,
         "customer_email":user?.email,
@@ -67,7 +92,7 @@ const OrderForm = () => {
             .then(response => {
                 if (response?.success) {
                     if (payMethod === 'razorPay') {
-                        if(getTotalAmount(total, discount)<=0){
+                        if((grandTotal)==0){
                             dispatch(clear())
                             navigate(`/`)
                         }else{
@@ -96,7 +121,7 @@ const OrderForm = () => {
         const options = {
             key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: process.env.REACT_APP_RAZORPAY_CURRENCY,
-            amount: (order?.total) * 100,
+            amount: (order?.paid_total) * 100,
             name: 'BEAUTE INDIA',
             description: order?.id,
             handler: function (response) {
@@ -140,7 +165,7 @@ const OrderForm = () => {
                                             </label>
                                         </div>
                                     </div>
-                                    {(subTotal - discount) >800 && (subTotal - discount)<15000 ?
+                                    {(grandTotal) >800 && (grandTotal)<15000 ?
                                     <>                                     <hr />
                                     <div className="radio-btn-section pe-3">
                                         <li>Cash on delivery</li>
@@ -195,9 +220,9 @@ const OrderForm = () => {
                                         <div className="new2"></div>
                                     </div>
                                     <div className="product-price">
-                                        <h5 style={{ fontSize: "20px !important" }}>Sub Total</h5><span style={{ fontSize: "20px" }}>₹ {getTotalAmount(subTotal, discount)}</span>
+                                        <h5 style={{ fontSize: "20px !important" }}>Sub Total</h5><span style={{ fontSize: "20px" }}>₹ {(grandTotal)}</span>
                                     </div>
-                                    <p>including ({(subTotal * 18) / 100}) in taxes</p>
+                                    <p>Shipping Charges  ₹ {saleTax}</p>
                                 </div>
                                 <button type='submit' disabled={!isDisabled} onClick={formik.handleSubmit} className="payment-btn mt-5" > Proceed to Payment</button>
 
