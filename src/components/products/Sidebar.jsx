@@ -152,7 +152,7 @@ window.location.href=base+'/products';
                     onChange={(e) => handleNavigate(e, "size", e.target.value)}
                     id={`size_${idx}`}
                   />
-                  <label htmlFor={`size_${idx}`}>{size?.name}</label>
+                  <label htmlFor={`size_${idx}`} style={{fontSize:12 , fontWeight:500}}>{size?.name}</label>
                 </li>
               ))}
             </ul>

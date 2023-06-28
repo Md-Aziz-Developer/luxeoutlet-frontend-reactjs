@@ -19,7 +19,15 @@ const OrderForm = () => {
     const address = toJson(defaultAddress?.address)
     const isDisabled = isUserLoggedIn && totalQuantity > 0
     const [payMethod, setPayMethod] = useState('razorPay');
-    console.log(address);
+   // console.log('Userdata',user);
+    const getTotalAmount=(subTotal,discount)=>{
+        var balance=subTotal-discount;
+        if(balance<=0){
+            return 0;
+        }else{
+            return balance;
+        }
+    }
     const initialValues = {
         "products": items.map(item => ({
             "order_quantity": item?.quantity,
@@ -28,13 +36,15 @@ const OrderForm = () => {
             "subtotal": item?.price * item?.quantity
         })),
         "status": 1,
-        "amount": total - discount,
+        "amount": getTotalAmount(total, discount),
         "sales_tax": 0,
         "coupon_id": coupon?.id,
         "shop_id": shop?.id,
-        "paid_total": total - discount,
-        "total": total - discount,
+        "paid_total": getTotalAmount(total, discount),
+        "total": getTotalAmount(total, discount),
         "customer_contact": user?.contact || '0123456789',
+        "customer_id":user?.id,
+        "customer_email":user?.email,
         "payment_gateway": payMethod,
         "billing_address": {
             "country": address?.country,
@@ -57,7 +67,12 @@ const OrderForm = () => {
             .then(response => {
                 if (response?.success) {
                     if (payMethod === 'razorPay') {
+                        if(getTotalAmount(total, discount)<=0){
+                            dispatch(clear())
+                            navigate(`/`)
+                        }else{
                         displayRazorpay(response?.data)
+                        }
                     } else {
                         notification('success', response?.message)
                         dispatch(clear())
@@ -101,7 +116,7 @@ const OrderForm = () => {
         paymentObject.open()
     }
 
-
+   
 
     return (
         <Fragment>
@@ -180,7 +195,7 @@ const OrderForm = () => {
                                         <div className="new2"></div>
                                     </div>
                                     <div className="product-price">
-                                        <h5 style={{ fontSize: "20px !important" }}>Sub Total</h5><span style={{ fontSize: "20px" }}>₹ {subTotal - discount}</span>
+                                        <h5 style={{ fontSize: "20px !important" }}>Sub Total</h5><span style={{ fontSize: "20px" }}>₹ {getTotalAmount(subTotal, discount)}</span>
                                     </div>
                                     <p>including ({(subTotal * 18) / 100}) in taxes</p>
                                 </div>

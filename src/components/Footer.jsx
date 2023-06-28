@@ -64,19 +64,19 @@ function Footer({category}) {
 			<div className="container-fluid footsection ">
 				<div className="main-footer-section py-4">
 					<div className="row  pt-5 pb-5 ">
-						<div className="col-lg-6 col-md-5">
+						<div className="col-lg-4 col-md-4">
 							<div className='footer-logo-section'>
 								<img src={logo} alt="" />
 								<p>Luxeoutlet has redefined conventional shopping experience with a brand portfolio that represents the pinnacle of the craftsmanship and unsurpassed quality further reinforcing its position as India's most desirable destination for world class brands. </p>
 							</div>
 
 						</div>
-						<div className="col-lg-3 col-md-4">
+						<div className="col-lg-4 col-md-4">
 							<div className="footdata">
 								<ul>
 									<li>
-										<div className="foothead mb-3">
-											LUXE OUTLET
+										<div className="foothead">
+											Quick Links
 										</div>
 									</li>
 									<Link to="/Whower"><li>Who we are ?</li></Link>
@@ -89,27 +89,10 @@ function Footer({category}) {
 									<Link to="#"><li>FAQs</li></Link>
 								</ul>
 							</div>
-							{/* <div className="child-foot">
-								<p className="mt-4">Sign up for our Newsletter</p>
-								<form onSubmit={handleSubmit}>
-									<div className="foot-email-block mt-3 d-flex">
-
-										<input type="email" name='email' className="foot-email" placeholder="Your email address" required onChange={e => setEmail(e.target.value)} value={email} />
-
-										<button type='submit' className='f-email border-0'></button>
-									</div>
-								</form>
-								<div className="cards-img mt-3">
-									<img src={visa} alt="" />
-									<img src={master} alt="" />
-									<img src={upi} alt="" />
-									<img src={netbanking} alt="" />
-									<img src={amazon} alt="" />
-								</div>
-							</div> */}
+							
 
 						</div>
-						<div className="col-lg-3 col-md-3">
+						<div className="col-lg-4 col-md-4">
 
 
 							<div className="footdata">
@@ -132,26 +115,10 @@ function Footer({category}) {
 										</li>
 									))}
 									</div>
-									{/* <Link to="#"><li>Fragrance For Him</li></Link>
-									<Link to="#"><li>Fragrance For Her</li></Link>
-									<Link to="#"><li>Makeup</li></Link>
-									<Link to="#"><li>Body Care</li></Link>
-									<Link to="#"><li>Home Fragrance</li></Link>
-									<Link to="#"><li>Luggage</li></Link> */}
+									
 								</ul>
 							</div>
-							{/* <div className="footdata">
-								<ul className="quick-links">
-									<li>
-										<div className="foothead mb-3 mt-5">
-											QUICK LINKS:
-										</div>
-									</li>
-									<img src={fb} alt="" />&nbsp;&nbsp;&nbsp;
-									<img src={wh} alt="" />&nbsp;&nbsp;
-									<img src={insta} alt="" />
-								</ul>
-							</div> */}
+							
 						</div>
 					</div>
 
