@@ -46,7 +46,7 @@ const CouponForm = () => {
                         default:
                             break;
                     }
-
+                    window.location.reload();
                 } else {
                     notification('error', 'Invalid coupon')
                 }
