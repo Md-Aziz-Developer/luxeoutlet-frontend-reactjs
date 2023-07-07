@@ -2205,3 +2205,6 @@ select option[value=""] {
 
 }
 
+.carousel-control-next, .carousel-control-prev {
+width: 5% !important;
+}

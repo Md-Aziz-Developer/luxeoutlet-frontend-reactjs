@@ -27,11 +27,11 @@ const Slider = ({ shop_id }) => {
             </div>
             <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
+    <span className=""><i class="fa-solid fa-chevron-left fs-2"></i></span>
   </button>
   <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
     <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
+    <span className=""><i class="fa-solid fa-chevron-right fs-2"></i></span>
   </button>
         </div>
     )
