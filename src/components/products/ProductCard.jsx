@@ -41,7 +41,7 @@ const ProductCard = ({ product }) => {
     <Fragment>
       <div className="col-lg-3 g-0 col-md-6 col-sm-6 text-center">
         <div className="card mt-3 mb-4">
-          <img
+        <Link className="p-1" to={`/products/${product?.id}`}><img
             src={coverImage}
             onError={onError}
             alt=""
@@ -51,8 +51,10 @@ const ProductCard = ({ product }) => {
               height: "250px",
               fontWeight: "bold",
               objectFit: "contain",
+              width: "100%",
+              padding: "3px"
             }}
-          />
+          /></Link>
           <h6 className="line-clamp" style={{ fontWeight: "bold" }}>
             {product?.brand?.name}{" "}
           </h6>

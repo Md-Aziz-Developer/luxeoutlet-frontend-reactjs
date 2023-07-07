@@ -67,6 +67,8 @@ const OrderForm = () => {
         "shop_id": shop?.id,
         "paid_total": grandTotal,
         "total": total,
+        "discount":discount,
+        "coupan":coupon,
         "customer_contact": user?.contact || '0123456789',
         "customer_id":user?.id,
         "customer_email":user?.email,
