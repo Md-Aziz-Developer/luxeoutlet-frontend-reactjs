@@ -75,9 +75,15 @@ const Products = () => {
   return (
     <Fragment>
       <Header />
-
-      <div>{shop_id && <Slider shop_id={shop_id} />}</div>
-
+      {/* {
+        console.log(searchParams.size,' the size')
+      } */}
+      <div>{
+      
+      searchParams.size==0 && shop_id && <Slider shop_id={shop_id}
+      
+      />}</div>
+      
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-2 col-md-3 sidebar-contect">

@@ -11,6 +11,11 @@ const Slider = ({ shop_id }) => {
             className="carousel slide"
             data-bs-ride="carousel"
         >
+            <div class="carousel-indicators">
+                {data.map((item, idx) => (
+                    <button key={idx} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={idx} className={idx === 0 ? 'active' : ''}aria-current="true" aria-label={`Slide ${idx+1}`}></button>
+                    ))}
+  </div>
             <div className="carousel-inner">
                 {data.map((item, idx) => (
                     <Fragment key={idx}>
@@ -20,24 +25,14 @@ const Slider = ({ shop_id }) => {
                     </Fragment>
                 ))}
             </div>
-            <button
-                className="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="prev"
-            >
-                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-                className="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide="next"
-            >
-                <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                <span className="visually-hidden">Next</span>
-            </button>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span className=""><i class="fa-solid fa-chevron-left fs-2"></i></span>
+  </button>
+  <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+    <span className=""><i class="fa-solid fa-chevron-right fs-2"></i></span>
+  </button>
         </div>
     )
 }

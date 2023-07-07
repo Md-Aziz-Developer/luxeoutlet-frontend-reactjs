@@ -62,7 +62,7 @@ function Header() {
 		<Fragment>
 			<div className="navhead">
 				<div className="logoo">
-					<Link to="/">
+					<Link to="/products">
 						<img src={logo} style={{ height: "3rem" }} alt="" />
 					</Link>
 
