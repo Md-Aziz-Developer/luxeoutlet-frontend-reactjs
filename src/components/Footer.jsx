@@ -7,14 +7,6 @@ import amexcard from 'assets/images/Amex.avif';
 import amazoncard from 'assets/images/Amazon-Pay.avif';
 import paytmcard from 'assets/images/paytm.avif';
 import upicard from 'assets/images/upi.avif';
-import fb from 'assets/pictures/fb-ft.svg';
-import insta from 'assets/pictures/insta-ft.svg';
-import master from 'assets/pictures/Mastercard.png';
-import netbanking from 'assets/pictures/Netbanking.png';
-import upi from 'assets/pictures/UPI.png';
-import visa from 'assets/pictures/Visa.png';
-// import logo from 'assets/pictures/header-logo.png';
-import wh from 'assets/pictures/wh-ft.svg';
 import { Link,useNavigate,useSearchParams } from "react-router-dom";
 
 
@@ -79,14 +71,14 @@ function Footer({category}) {
 											Quick Links
 										</div>
 									</li>
-									<Link to="/Whower"><li>Who we are ?</li></Link>
+									<Link to="/who-we-are"><li>Who we are ?</li></Link>
 									
-									<Link to="/Terms"><li>Terms & Conditions</li></Link>
-									<Link to="/Privacy"><li>We respect your privacy </li></Link>
+									<Link to="/terms-condition"><li>Terms & Conditions</li></Link>
+									<Link to="/privacy-policy"><li>We respect your privacy </li></Link>
 									<Link to="/Contact"><li>Contact Us</li></Link>
 									<Link to="/Shipping"><li>Shipping & Returns</li></Link>
 									<Link to="#"><li>Authentication Certificate </li></Link>
-									<Link to="#"><li>FAQs</li></Link>
+									<Link to="/faqs"><li>FAQs</li></Link>
 								</ul>
 							</div>
 							

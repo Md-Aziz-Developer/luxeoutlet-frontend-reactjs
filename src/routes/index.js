@@ -4,11 +4,13 @@ import Cart from "pages/Cart"
 import Checkout from "pages/Checkout"
 import Contact from "pages/Contact"
 import Faq from "pages/Faq"
+import Faqs from "pages/Faqs"
 import Home from "pages/Home"
 import Login from "pages/Login"
 import OrderComplete from "pages/OrderComplete"
 import Page404 from "pages/Page404"
 import Privacy from "pages/Privacy"
+import Privacypolicy from "pages/Privacypolicy"
 import ProductDetail from "pages/ProductDetail"
 import Products from "pages/Products"
 import Shipping from "pages/Shipping"
@@ -24,9 +26,9 @@ const publicRoutes = [
 
 const protectedRoutes = [
     { path: "/signup", component: Signup },
-    { path: "/Whower", component: Whower },
+    { path: "/who-we-are", component: Whower },
     { path: "/Privacy", component: Privacy },
-    { path: "/Terms", component: Terms },
+    { path: "/terms-condition", component: Terms },
     { path: "/Authentication", component: Authentication },
     { path: "/Faq", component: Faq },
     { path: "/Shipping", component: Shipping },
@@ -38,6 +40,8 @@ const protectedRoutes = [
     { path: "/checkout", component: Checkout },
     { path: "/order-complete", component: OrderComplete },
     { path: "/wishlist", component: Wishlist },
+    {path :"/faqs",component : Faqs},
+    {path :"/privacy-policy",component : Privacypolicy},
 ]
 
 
