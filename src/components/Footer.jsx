@@ -77,7 +77,7 @@ function Footer({category}) {
 									<Link to="/privacy-policy"><li>We respect your privacy </li></Link>
 									<Link to="/Contact"><li>Contact Us</li></Link>
 									<Link to="/Shipping"><li>Shipping & Returns</li></Link>
-									<Link to="#"><li>Authentication Certificate </li></Link>
+									{/* <Link to="#"><li>Authentication Certificate </li></Link> */}
 									<Link to="/faqs"><li>FAQs</li></Link>
 								</ul>
 							</div>
