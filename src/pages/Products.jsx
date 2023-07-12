@@ -44,7 +44,10 @@ const Products = () => {
   }
 
   const shop_id = info?.id || 0;
-
+  const [gridView,setGridView]=useState(true);
+  const changeGridView=()=>{
+    setGridView(!gridView);
+  }
   useEffect(() => {
     if (!isLoggedIn) {
       navigate("/");
@@ -118,16 +121,14 @@ const Products = () => {
                               style={{ height: 20, cursor: "pointer" }}
                               src={squareView}
                               alt=""
-                              data-bs-toggle="tab"
-                              data-bs-target="#nav-home"
+                              onClick={changeGridView}
                             />
                             <img
                               className="im-2"
                               style={{ height: 20, cursor: "pointer" }}
                               src={hrView}
                               alt=""
-                              data-bs-toggle="tab"
-                              data-bs-target="#nav-prestige "
+                              onClick={changeGridView}
                             />
                           </div>
                           <div className="box2 text-center">
@@ -174,16 +175,14 @@ const Products = () => {
                               style={{ height: 20, cursor: "pointer" }}
                               src={squareView}
                               alt=""
-                              data-bs-toggle="tab"
-                              data-bs-target="#nav-home"
+                              onClick={changeGridView}
                             />
                             <img
                               className="im-2"
                               style={{ height: 20, cursor: "pointer" }}
                               src={hrView}
                               alt=""
-                              data-bs-toggle="tab"
-                              data-bs-target="#nav-prestige "
+                              onClick={changeGridView}
                             />
                           </div>
                           <div className="box2 ">
@@ -224,7 +223,7 @@ const Products = () => {
 
                         <div className="tab-content" id="nav-tabContent">
                           <div
-                            className="tab-pane fade show active "
+                            className={gridView? 'tab-pane fade show active' :'tab-pane fade' }  
                             id="nav-home"
                             role="tabpanel"
                             aria-labelledby="nav-home-tab"
@@ -250,14 +249,17 @@ const Products = () => {
                                   totalCount={data.length}
                                   currentPage={currentPage}
                                   pageSize={PageSize}
-                                  onPageChange={(page) => setCurrentPage(page)}
+                                  onPageChange={(page) => {
+                                    setCurrentPage(page)
+                                    window.scrollTo(0, 500)
+                                  }}
                                 />
                               </div>
                             </div>
                           </div>
 
                           <div
-                            className="tab-pane fade"
+                            className={!gridView? 'tab-pane fade show active' :'tab-pane fade' }
                             id="nav-prestige"
                             role="tabpanel"
                             aria-labelledby="nav-prestige-tab"
@@ -282,7 +284,10 @@ const Products = () => {
                                 totalCount={data.length}
                                 currentPage={currentPage}
                                 pageSize={PageSize}
-                                onPageChange={(page) => setCurrentPage(page)}
+                                onPageChange={(page) => {
+                                  setCurrentPage(page)
+                                  window.scrollTo(0, 500)
+                                }}
                               />
                             </div>
                           </div>

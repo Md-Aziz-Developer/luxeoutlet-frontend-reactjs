@@ -662,7 +662,7 @@ h6 {
   margin-left: 50px !important;
 }
 
-.form-co,
+/* .form-co,
 .form-control {
   width: 70% !important;
   margin: auto;
@@ -671,7 +671,7 @@ h6 {
   line-height: 1.5;
   color: #000 !important;
   background-color: transparent !important;
-}
+} */
 
 .login-form {
   display: flex;
@@ -698,6 +698,19 @@ form h6 {
   font-weight: bold;
   font-family: Montserrat, sans-serif !important;
   color: #707070;
+}
+.contactForm h1 {
+  font-weight: normal;
+  font-size: calc(1.375rem + 1.5vw);
+}
+
+.contactForm h6 {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: inherit !important;
+  
 }
 
 .loginbtn {
