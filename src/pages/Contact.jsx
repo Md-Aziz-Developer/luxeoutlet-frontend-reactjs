@@ -67,8 +67,13 @@ const Contact = () => {
                <div className='row'>
                 <div className='col-md-12'>
                   <h1 className='text-center'>Contact Us</h1>
-                  <h6 className='text-center mb-3'>For all enquiries. Please contact us by filling below details.</h6>
-                  {successMessage!='' ?
+                  <h6 className='text-center mb-2 fw-600'>FOR ANY ASSISTANCE AND QUERIES FEEL FREE TO LEAVE A NOTE.</h6>
+                  <h6 className='text-center mb-2'>-OR-</h6>
+                  <h6 className='text-center mb-1 fw-600'>REACH US AT</h6>
+                  <h6 className='text-center mb-1 fw-600'>Mobile: 8080540679</h6>
+                  <h6 className='text-center mb-1 fw-600'>Mail: care@bcplindia.com</h6>
+                  <h6 className='text-center mb-3 fw-600'>We will respond to you message within 24 hours.</h6>
+                   {successMessage!='' ?
                   <h5 className='text-center  text-success fw-b'>{successMessage}</h5>
                 : ''
                 }
