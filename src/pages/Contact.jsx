@@ -47,17 +47,12 @@ const Contact = () => {
               'msg':message
             })
             .then(res=>{
-              if(res.data.success===true){
-                setEmail('');
-                setMessage('');
-                setName('');
-                setNumber('');
-                setSubject('');
-                document.getElementById("ccontactForm").reset();
+              //console.log(res.statusText);
+                document.getElementById("contactForm").reset();
                 notification('success','Thanks For query We will get back soon!');
-              }else{
-                notification('error','Something Error Try Again!!!');
-              }
+              // }else{
+              //   notification('error','Something Error Try Again!!!');
+              // }
             })
             .catch(err=>{
               notification('error','Something Error Try Again!!!');
