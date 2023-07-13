@@ -44,17 +44,23 @@ const Contact = () => {
               'email':email,
               'number':number,
               'subject':subject,
-              'message':message
+              'msg':message
             })
             .then(res=>{
-              if(res.data.status=='success'){
-                setsuccessMessage(res.data.message);
+              if(res.data.success===true){
+                setEmail('');
+                setMessage('');
+                setName('');
+                setNumber('');
+                setSubject('');
+                document.getElementById("ccontactForm").reset();
+                notification('success','Thanks For query We will get back soon!');
               }else{
-                seterrorMessage(res.data.message)
+                notification('error','Something Error Try Again!!!');
               }
             })
             .catch(err=>{
-              seterrorMessage('Something Error Try Again!!!')
+              notification('error','Something Error Try Again!!!');
             })
       }
     
@@ -63,7 +69,7 @@ const Contact = () => {
 		<Fragment>
 			<Header />
 			    <div className='container mt-4 mb-4 contactForm'>
-            <form method='post' onSubmit={processQueryForm}>
+            <form method='post' onSubmit={processQueryForm} id='contactForm'>
                <div className='row'>
                 <div className='col-md-12'>
                   <h1 className='text-center'>Contact Us</h1>
@@ -74,7 +80,7 @@ const Contact = () => {
                   <h6 className='text-center mb-1 fw-600'>Mail: care@bcplindia.com</h6>
                   <h6 className='text-center mb-3 fw-600'>We will respond to you message within 24 hours.</h6>
                    {successMessage!='' ?
-                  <h5 className='text-center  text-success fw-b'>{successMessage}</h5>
+                  <h5 className='text-center  text-success fw-bold'>{successMessage}</h5>
                 : ''
                 }
                 {errorMessage!='' ?
