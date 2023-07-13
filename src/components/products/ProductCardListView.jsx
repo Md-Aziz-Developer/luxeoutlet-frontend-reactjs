@@ -77,11 +77,11 @@ const ProductCardListView = ({ product }) => {
             <div className='row mt-5 pe-3 main-list-view align-items-center' style={{ boxShadow:"0px 3px 6px #00000029" }}>
               <div className='col-sm-4'>
               
-                    <Link className="p-1" to={`/products/${product?.id}`}><img
+                    <Link className="p-1" to={`/products/${product?.id}`} target='_blank'><img
             src={coverImage}
             onError={onError}
             alt=""
-            onClick={(e) => navigate(`/products/${product?.id}`)}
+            // onClick={(e) => navigate(`/products/${product?.id}`)}
             style={{
               cursor: "pointer",
               height: "250px",
@@ -95,7 +95,7 @@ const ProductCardListView = ({ product }) => {
               <div className='col-sm-8 listview-card'>
                 {/* {console.log(product)} */}
               <h6 className="card-title  mb-2" >
-                        <Link to={`/products/${product?.id}`}>
+                        <Link to={`/products/${product?.id}`} target='_blank'>
 
                             {product?.name}
                         </Link>

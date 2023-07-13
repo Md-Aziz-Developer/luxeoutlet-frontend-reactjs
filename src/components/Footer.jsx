@@ -48,7 +48,8 @@ function Footer({category}) {
 		}
 		// Object.assign(Obj, { [key]: value })
 		const query = new URLSearchParams(Obj).toString();
-		navigate(`/products?${query}`);
+		
+		window.location.href=`/products?${query}`;
 	  };
 
 	return (
@@ -71,14 +72,14 @@ function Footer({category}) {
 											Quick Links
 										</div>
 									</li>
-									<Link to="/who-we-are"><li>Who we are ?</li></Link>
+									<Link to="/who-we-are" target='_blank'><li>Who we are ?</li></Link>
 									
-									<Link to="/terms-condition"><li>Terms & Conditions</li></Link>
-									<Link to="/privacy-policy"><li>We respect your privacy </li></Link>
-									<Link to="/Contact"><li>Contact Us</li></Link>
-									<Link to="/Shipping"><li>Shipping & Returns</li></Link>
+									<Link to="/terms-condition" target='_blank'><li>Terms & Conditions</li></Link>
+									<Link to="/privacy-policy" target='_blank'><li>We respect your privacy </li></Link>
+									<Link to="/Contact" target='_blank'><li>Contact Us</li></Link>
+									<Link to="/Shipping" target='_blank'><li>Shipping & Returns</li></Link>
 									{/* <Link to="#"><li>Authentication Certificate </li></Link> */}
-									<Link to="/faqs"><li>FAQs</li></Link>
+									<Link to="/faqs" target='_blank'><li>FAQs</li></Link>
 								</ul>
 							</div>
 							

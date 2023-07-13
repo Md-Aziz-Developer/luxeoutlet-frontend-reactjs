@@ -13,6 +13,7 @@
     background: #2f2b2b;
     border-radius: 50%;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    top:-5px;
 }
 
 /* Styles for the slider active state */

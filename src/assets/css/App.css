@@ -712,7 +712,9 @@ form h6 {
   font-family: inherit !important;
   
 }
-
+.fw-600{
+  font-weight: 600 !important;
+}
 .loginbtn {
   margin: 10px 0;
   color: #000;

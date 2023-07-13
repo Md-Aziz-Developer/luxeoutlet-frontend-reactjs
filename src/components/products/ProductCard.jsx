@@ -41,11 +41,11 @@ const ProductCard = ({ product }) => {
     <Fragment>
       <div className="col-lg-3 g-0 col-md-6 col-sm-6 text-center">
         <div className="card mt-3 mb-4">
-        <Link className="p-1" to={`/products/${product?.id}`}><img
+        <Link className="p-1" to={`/products/${product?.id}`} target='_blank'><img
             src={coverImage}
             onError={onError}
             alt=""
-            onClick={(e) => navigate(`/products/${product?.id}`)}
+            // onClick={(e) => navigate(`/products/${product?.id}`)}
             style={{
               cursor: "pointer",
               height: "250px",
@@ -61,7 +61,7 @@ const ProductCard = ({ product }) => {
           <br></br>
 
           <h6 className="card-title mb-2" style={{ fontSize: "14px" }}>
-            <Link className="p-1" to={`/products/${product?.id}`}>{product?.name.substring(0, 25)+'...'}</Link>
+            <Link className="p-1" to={`/products/${product?.id}`} target='_blank'>{product?.name.substring(0, 25)+'...'}</Link>
           </h6>
 
           {/* <p  className='line-clamp'>
