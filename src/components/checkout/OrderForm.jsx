@@ -143,10 +143,10 @@ const OrderForm = () => {
             amount: grandTotal * 100,
             name: 'BEAUTE INDIA',
             description: 'LUX'+Date.now(),
-            handler: function (response) {
+            handler: async function (response) {
                 if (response?.razorpay_payment_id) {
                     console.log(response);
-                    const payStatus=verifyPaymentStatus(response?.razorpay_payment_id);
+                    const payStatus=await verifyPaymentStatus(response?.razorpay_payment_id);
                     if(payStatus){
                       request.post(API_ENDPOINTS.ORDER, order)
                         .then(response => {
@@ -183,7 +183,7 @@ const OrderForm = () => {
         const response= await axios.post(`https://${process.env.REACT_APP_RAZORPAY_KEY}:${process.env.REACT_APP_RAZORPAY_SECRET}@api.razorpay.com/v1/payments/${paymentId}/capture`,{amount: grandTotal * 100,currency: "INR"},{
             headers: {
                 'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': '*', // Replace with the allowed origin(s) on your server
+              'Access-Control-Allow-Origin': 'https://luxeoutlet.in', // Replace with the allowed origin(s) on your server
             },
           })
         if(response.data.status=='captured'){
