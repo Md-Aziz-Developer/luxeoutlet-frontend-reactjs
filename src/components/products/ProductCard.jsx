@@ -80,9 +80,10 @@ const ProductCard = ({ product }) => {
             <Link to={`/products/${product?.id}`}>
               <div className="price">₹ {product?.sale_price}</div>
             </Link>
-            {product?.normal_price> 0 ?(<del>
+            {product?.normal_price> 0 ?
+            (<del>
               <Link to={`/products/${product?.id}`}>
-                <div className="price">₹ {product?.normal_price}</div>
+                <div className="price">₹ {product?.sale_price}</div>
               </Link>
             </del>):""}
             

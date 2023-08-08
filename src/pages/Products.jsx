@@ -233,6 +233,7 @@ const Products = () => {
                                 {currentTableData.length > 0 ? (
                                   <Fragment>
                                     {currentTableData.map((product, idx) => (
+                                      console.log(product),
                                       <Fragment key={idx}>
                                         <ProductCard product={product} category={category_arr} />
                                       </Fragment>

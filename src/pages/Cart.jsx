@@ -109,6 +109,7 @@ const Cart = () => {
 									<CouponForm />
 									: ''
 								}
+								{items.length > 0 ? 
 								<div className="total-section">
 									<h1 style={{ fontSize: "26px" }} className="mb-5"> <u> Total</u></h1>
 									<div className="total-products">
@@ -153,6 +154,8 @@ const Cart = () => {
 								}
 									
 								</div>
+								: ''
+								}
 							</div>
 						</div>
 					</div>

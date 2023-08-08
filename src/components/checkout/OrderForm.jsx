@@ -8,6 +8,7 @@ import { API_ENDPOINTS, request } from 'utilities';
 import notification from 'utilities/notification';
 import { loadScript, toJson } from 'utilities/str';
 import DefaultAddressQuery from './DefaultAddressQuery';
+import axios from 'axios';
 
 const OrderForm = () => {
     const navigate = useNavigate()
@@ -90,26 +91,42 @@ const OrderForm = () => {
     }
 
     const onSubmit = (values) => {
-        request.post(API_ENDPOINTS.ORDER, values)
-            .then(response => {
-                if (response?.success) {
-                    if (payMethod === 'razorPay') {
-                        if((grandTotal)==0){
+        // request.post(API_ENDPOINTS.ORDER, values)
+        //     .then(response => {
+        //         if (response?.success) {
+        //             if (payMethod === 'razorPay') {
+        //                 if((grandTotal)==0){
+        //                     dispatch(clear())
+        //                     navigate(`/`)
+        //                 }else{
+        //                 displayRazorpay(response?.data)
+        //                 }
+        //             } else {
+        //                 notification('success', response?.message)
+        //                 dispatch(clear())
+        //                 // navigate(`/order-complete?order_id=${response?.data?.id}`)
+        //                 navigate(`/`)
+        //             }
+        //         }
+        //     })
+            if(payMethod=='razorPay'){
+               // notification('success', 'perform razorPay')
+               // console.log('value ::' +values);
+               displayRazorpay(values);
+              
+            }else{
+                request.post(API_ENDPOINTS.ORDER, values)
+                    .then(response => {
+                        if (response?.success) {
+                            notification('success', response?.message)
                             dispatch(clear())
                             navigate(`/`)
                         }else{
-                        displayRazorpay(response?.data)
+                            notification('error', response?.message)
                         }
-                    } else {
-                        notification('success', response?.message)
-                        dispatch(clear())
-                        // navigate(`/order-complete?order_id=${response?.data?.id}`)
-                        navigate(`/`)
-                    }
-                }
             })
+            }
     }
-
     const formik = useFormik({ initialValues, enableReinitialize: true, onSubmit })
 
     async function displayRazorpay(order) {
@@ -123,13 +140,29 @@ const OrderForm = () => {
         const options = {
             key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: process.env.REACT_APP_RAZORPAY_CURRENCY,
-            amount: (order?.paid_total) * 100,
+            amount: grandTotal * 100,
             name: 'BEAUTE INDIA',
-            description: order?.id,
+            description: 'LUX'+Date.now(),
             handler: function (response) {
                 if (response?.razorpay_payment_id) {
-                    dispatch(clear())
-                    navigate('/')
+                    console.log(response);
+                    const payStatus=verifyPaymentStatus(response?.razorpay_payment_id);
+                    if(payStatus){
+                      request.post(API_ENDPOINTS.ORDER, order)
+                        .then(response => {
+                            if (response?.success) {
+                                    notification('success', response?.message)
+                                    dispatch(clear())
+                                    navigate(`/`)
+                                
+                            }
+                        })  
+                    }else{
+                        notification('error', 'Payment Failed Try Again!!!')
+
+                    }
+                    // dispatch(clear())
+                    // navigate('/')
                 }
             },
             prefill: {
@@ -141,6 +174,27 @@ const OrderForm = () => {
 
         const paymentObject = new window.Razorpay(options)
         paymentObject.open()
+    }
+
+    async function verifyPaymentStatus(paymentId)
+    {
+       
+      try {
+        const response= await axios.post(`https://${process.env.REACT_APP_RAZORPAY_KEY}:${process.env.REACT_APP_RAZORPAY_SECRET}@api.razorpay.com/v1/payments/${paymentId}/capture`,{amount: grandTotal * 100,currency: "INR"},{
+            headers: {
+                'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*', // Replace with the allowed origin(s) on your server
+            },
+          })
+        if(response.data.status=='captured'){
+            return true;
+        }else{
+            return false;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        return false;
+      }
     }
 
    
