@@ -124,14 +124,17 @@ const OrderForm = () => {
             description: 'LUX'+Date.now(),
             handler:  function (response) {
                 if (response?.razorpay_payment_id) {
-                //   const mydata={
-                //         "paymentId":response?.razorpay_payment_id,
-                //         "amount":grandTotal*100,
-                //         "currency":"INR"
-                //     }
-                //     request.post(API_ENDPOINTS.PAYMENT_VERIFY, )
-                //     .then(presponse => {
-                //         if(presponse?.status=='captured' && presponse?.captured===true){
+                  const mydata={
+                        "paymentId":response?.razorpay_payment_id,
+                        "amount":grandTotal*100,
+                        "currency":"INR"
+                    }
+                    request.post(API_ENDPOINTS.PAYMENT_VERIFY,mydata )
+                    .then(presponse => {
+                        
+                        const myRes=JSON.parse(presponse.data);
+                                
+                        if(myRes?.status=='captured' && myRes?.captured===true){
                             request.post(API_ENDPOINTS.ORDER, order)
                             .then(responsedata => {
                                 if (responsedata?.success) {
@@ -143,10 +146,10 @@ const OrderForm = () => {
                                     notification('error', responsedata?.message)
                                 }
                             })  
-                    //     }else{
-                    //         notification('error', 'Payment Failed Try Again!!!') 
-                    //     }
-                    // })  
+                        }else{
+                            notification('error', 'Payment Failed Try Again!!!') 
+                        }
+                    })  
                     
                 }else{
                     notification('error', 'Payment Failed Try Again!!!') 
