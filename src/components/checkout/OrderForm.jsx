@@ -163,7 +163,12 @@ const OrderForm = () => {
         "currency":"INR"
     }
     try{
-        request.post(API_ENDPOINTS.PAYMENT_VERIFY,mydata)
+        request.post(API_ENDPOINTS.PAYMENT_VERIFY,mydata,{
+                    headers: {
+                        Accept: "*/*",
+                        'Content-Type': 'application/json',
+                      'Access-Control-Allow-Origin': 'https://luxeoutlet.in/', 
+                    }})
         .then(response=>{
           if(response.status=='captured' && response?.captured===true){
             return true
