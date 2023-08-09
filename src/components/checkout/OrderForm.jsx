@@ -122,26 +122,34 @@ const OrderForm = () => {
             amount: grandTotal * 100,
             name: 'BEAUTE INDIA',
             description: 'LUX'+Date.now(),
-            handler: async function (response) {
+            handler:  function (response) {
                 if (response?.razorpay_payment_id) {
-                  //  console.log(response);
-                    const payStatus=await verifyPaymentStatus(response?.razorpay_payment_id);
-                    if(payStatus){
-                      request.post(API_ENDPOINTS.ORDER, order)
-                        .then(response => {
-                            if (response?.success) {
-                                    notification('success', response?.message)
-                                    dispatch(clear())
-                                    navigate(`/`)
-                                
-                            }
-                        })  
-                    }else{
-                        notification('error', 'Payment Failed Try Again!!!')
-
-                    }
-                    // dispatch(clear())
-                    // navigate('/')
+                //   const mydata={
+                //         "paymentId":response?.razorpay_payment_id,
+                //         "amount":grandTotal*100,
+                //         "currency":"INR"
+                //     }
+                //     request.post(API_ENDPOINTS.PAYMENT_VERIFY, )
+                //     .then(presponse => {
+                //         if(presponse?.status=='captured' && presponse?.captured===true){
+                            request.post(API_ENDPOINTS.ORDER, order)
+                            .then(responsedata => {
+                                if (responsedata?.success) {
+                                        notification('success', responsedata?.message)
+                                        dispatch(clear())
+                                        navigate(`/`)
+                                    
+                                }else{
+                                    notification('error', responsedata?.message)
+                                }
+                            })  
+                    //     }else{
+                    //         notification('error', 'Payment Failed Try Again!!!') 
+                    //     }
+                    // })  
+                    
+                }else{
+                    notification('error', 'Payment Failed Try Again!!!') 
                 }
             },
             prefill: {
@@ -155,33 +163,27 @@ const OrderForm = () => {
         paymentObject.open()
     }
 
-    async function verifyPaymentStatus(paymentId)
-    {
-    const mydata={
-        "paymentId":paymentId,
-        "amount":grandTotal*100,
-        "currency":"INR"
-    }
-    try{
-        request.post(API_ENDPOINTS.PAYMENT_VERIFY,mydata,{
-                    headers: {
-                        Accept: "*/*",
-                        'Content-Type': 'application/json',
-                      'Access-Control-Allow-Origin': 'https://luxeoutlet.in/', 
-                    }})
-        .then(response=>{
-          if(response.status=='captured' && response?.captured===true){
-            return true
-          }else{
-            return false
-          }
-        });
-        
-    } catch (error) {
-            console.error('Error:', error);
-            return false;
-          }
-    }
+    // async function verifyPaymentStatus(paymentId)
+    // {
+    // const mydata={
+    //     "paymentId":paymentId,
+    //     "amount":grandTotal*100,
+    //     "currency":"INR"
+    // }
+    // try{
+    //     request.post(API_ENDPOINTS.PAYMENT_VERIFY, mydata)
+    //                     .then(response => {
+    //                         if(response?.status=='captured' && response?.captured===true){
+    //                             return true
+    //                           }else{
+    //                             return false
+    //                           }
+    //                     })  
+    // } catch (error) {
+    //         console.error('Error:', error);
+    //         return false;
+    //       }
+    // }
 
    
 
