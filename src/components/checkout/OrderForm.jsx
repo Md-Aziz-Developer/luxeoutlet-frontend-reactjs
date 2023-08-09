@@ -91,29 +91,9 @@ const OrderForm = () => {
     }
 
     const onSubmit = (values) => {
-        // request.post(API_ENDPOINTS.ORDER, values)
-        //     .then(response => {
-        //         if (response?.success) {
-        //             if (payMethod === 'razorPay') {
-        //                 if((grandTotal)==0){
-        //                     dispatch(clear())
-        //                     navigate(`/`)
-        //                 }else{
-        //                 displayRazorpay(response?.data)
-        //                 }
-        //             } else {
-        //                 notification('success', response?.message)
-        //                 dispatch(clear())
-        //                 // navigate(`/order-complete?order_id=${response?.data?.id}`)
-        //                 navigate(`/`)
-        //             }
-        //         }
-        //     })
+
             if(payMethod=='razorPay'){
-               // notification('success', 'perform razorPay')
-               // console.log('value ::' +values);
                displayRazorpay(values);
-              
             }else{
                 request.post(API_ENDPOINTS.ORDER, values)
                     .then(response => {
@@ -136,7 +116,6 @@ const OrderForm = () => {
             notification('error', 'Razorpay SDK failed to load. Are you online?')
             return
         }
-
         const options = {
             key: process.env.REACT_APP_RAZORPAY_KEY,
             currency: process.env.REACT_APP_RAZORPAY_CURRENCY,
@@ -145,7 +124,7 @@ const OrderForm = () => {
             description: 'LUX'+Date.now(),
             handler: async function (response) {
                 if (response?.razorpay_payment_id) {
-                    console.log(response);
+                  //  console.log(response);
                     const payStatus=await verifyPaymentStatus(response?.razorpay_payment_id);
                     if(payStatus){
                       request.post(API_ENDPOINTS.ORDER, order)
@@ -178,23 +157,25 @@ const OrderForm = () => {
 
     async function verifyPaymentStatus(paymentId)
     {
-       
-      try {
-        const response= await axios.post(`https://${process.env.REACT_APP_RAZORPAY_KEY}:${process.env.REACT_APP_RAZORPAY_SECRET}@api.razorpay.com/v1/payments/${paymentId}/capture`,{amount: grandTotal * 100,currency: "INR"},{
-            headers: {
-                'Content-Type': 'application/json',
-              'Access-Control-Allow-Origin': 'https://luxeoutlet.in', // Replace with the allowed origin(s) on your server
-            },
-          })
-        if(response.data.status=='captured'){
-            return true;
-        }else{
+    const mydata={
+        "paymentId":paymentId,
+        "amount":grandTotal*100,
+        "currency":"INR"
+    }
+    try{
+        request.post(API_ENDPOINTS.PAYMENT_VERIFY,mydata)
+        .then(response=>{
+          if(response.status=='captured' && response?.captured===true){
+            return true
+          }else{
+            return false
+          }
+        });
+        
+    } catch (error) {
+            console.error('Error:', error);
             return false;
-        }
-      } catch (error) {
-        console.error('Error:', error);
-        return false;
-      }
+          }
     }
 
    

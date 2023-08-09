@@ -17,6 +17,7 @@ const API_ENDPOINTS = {
     SLIDER_IMAGES: 'sliderimages',
     ADDRESS: 'address',
     ORDER: 'order',
+    PAYMENT_VERIFY: 'payment_verify',
     BRAND: 'brand',
     SIZE: 'size',
     NEWSLETTER: 'newsletter',
